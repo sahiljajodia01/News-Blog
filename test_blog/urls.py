@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from posts import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,4 +27,6 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/edit/$', views.posts_update, name="update"),
     url(r'^(?P<id>\d+)/delete/$', views.posts_delete, name="delete"),
     url(r'^signup/$', views.signup, name="signup"),
+    url(r'^login/$', auth_views.login, name="login"),
+    url(r'^logout/$', auth_views.logout, { 'template_name': 'posts/login.html' } , name="logout"),
 ]
