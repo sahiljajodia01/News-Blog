@@ -28,5 +28,5 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/delete/$', views.posts_delete, name="delete"),
     url(r'^signup/$', views.signup, name="signup"),
     url(r'^login/$', auth_views.login, name="login"),
-    url(r'^logout/$', auth_views.logout, { 'template_name': 'posts/login.html' } , name="logout"),
+    url(r'^logout/$', auth_views.logout, { 'next_page': '/'}, name="logout"),
 ]
