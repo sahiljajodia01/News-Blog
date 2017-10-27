@@ -1,3 +1,5 @@
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
@@ -75,17 +77,33 @@ def posts_update(request, id):
         messages.success(request, "Item saved")
         return HttpResponseRedirect(instance.get_absolute_url())
 
-    
+
     context = {
         "form": form,
         "instance": instance,
         "title": instance.title,
     }
 
-    return render(request, "create.html", context)        
+    return render(request, "create.html", context)
 
 def posts_delete(request, id):
     instance = get_object_or_404(Post, id=id)
     instance.delete()
     messages.success(request, "Successfully deleted")
     return redirect("list")
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('list')
+    else:
+        form = UserCreationForm()
+
+    context = { 'form': form }
+    return render(request, 'signup.html', context)
