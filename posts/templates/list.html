@@ -2,50 +2,147 @@
 
 {% load humanize %}
 
+
 {% block content %}
-	<div class="col-sm-6 col-sm-offset-3">
-	<h1>{{ title }}</h1>
-	<br>
-	<div class="row">
-	{% for obj in object_list %}
-	<div class="col-sm-12">
-	<div class="thumbnail">
-	{% if obj.image %}
-	<img src="{{ obj.image.url }}" class="img-responsive"/>
-	{% endif %}
-	<!-- {# <a href="{% url 'posts:detail' id=obj.id %}">{{ obj.title }}</a><br> #} -->
-	<h3><!-- {{ forloop.counter }}:   --><a href="{{ obj.get_absolute_url }}">{{ obj.title|title }}  <small>{{ obj.timestamp|timesince }} ago</small></a></h3><br>
-	{{ obj.content|linebreaks|truncatechars:120 }}<br>
-	<a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a>
-	</div>
-	</div>
-
-	<!-- {% cycle "" "</div><div class='row'>" %} -->
-	{% endfor %}
-	</div>
-
-	<div class="pagination">
-    <span class="step-links">
-        {% if object_list.has_previous %}
-            <a href="?{{page_request_var}}={{ object_list.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
-        </span>
-
-        {% if object_list.has_next %}
-            <a href="?{{page_request_var}}={{ object_list.next_page_number }}">next</a>
-        {% endif %}
-    </span>
-	</div>
-
-	</div>
 
 
-	
+
+
+
+    <div class="post-fluid large-image-v1">
+        {% for obj in object_list %}
+			<div class="container-fluid">
+				<div class="container">
+					<div class="row post-items">
+						<div class="post-item-banner">
+							{% if obj.image %}
+							    <img src="{{ obj.image.url }}" class="img-responsive"/>
+                            {% else %}
+                                <img src="static/img/img-08.png" class="img-responsive"/>
+                            {% endif %}
+						</div>
+						<div class="col-md-2">
+							<div class="post-item-short">
+								<span class="medium-text" style="font-size: 30px; margin-top: -35px;">{{ obj.timestamp|timesince }}</span>
+								<span class="medium-text" style="font-size: 20px; margin-top: -40px;">ago</span>
+							</div>
+						</div>
+						<div class="col-md-10">
+							<div class="post-item">
+								<div class="post-item-paragraph">
+                                    <h2><a href="{{ obj.get_absolute_url }}">{{ obj.title|title }}</a></h2>
+{#									<h2><a href="#">VASAVA STUDIO</a></h2>#}
+									<p>{{ obj.content|linebreaks|truncatechars:120 }}<a href="{{ obj.get_absolute_url }}" class="more">[...]</a></p>
+								</div>
+								<div class="post-item-info clearfix">
+									<div class="pull-left">
+										By {{ obj.user }}
+									</div>
+									<div class="post-item-social">
+										<a href="#" class="quick-read"><i class="fa fa-eye"></i></a>
+										<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>
+										<a href="#" class="post-like"><i class="fa fa-heart"></i><span>28</span></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+{#    <div class="post-fluid">#}
+{#        {% for obj in object_list %}#}
+{#			<div class="container-fluid post-default">#}
+{#				<div class="container">#}
+{#					<div class="row post-items">#}
+{#						<div class="post-item-banner">#}
+{#                            {% if obj.image %}#}
+{#							    <img src="{{ obj.image.url }}" class="img-responsive"/>#}
+{#                            {% else %}#}
+{#                                <img src="static/img/img-08.png" class="img-responsive"/>#}
+{#                            {% endif %}#}
+{#						</div>#}
+{#						<div class="col-md-10 col-md-offset-1">#}
+{#							<div class="post-item post-item-centered">#}
+{#								<div class="post-item-paragraph">#}
+{#									<span class="date">{{ obj.timestamp|timesince }} ago</span>#}
+{#                                    <h2><a href="{{ obj.get_absolute_url }}">{{ obj.title|title }}</a></h2>#}
+{#									<h2><a href="#">VASAVA STUDIO</a></h2>#}
+{#									<p>{{ obj.content|linebreaks|truncatechars:120 }}<a href="{{ obj.get_absolute_url }}" class="more">[...]</a></p>#}
+{#								</div>#}
+{#								<div class="post-item-info clearfix">#}
+{#									<div class="pull-left">#}
+{#										By {{ obj.user }}   •   <a href="#">#branding</a>#}
+{#									</div>#}
+{#									<div class="pull-right post-item-social">#}
+{#										<a href="#" class="quick-read"><i class="fa fa-eye"></i></a>#}
+{#										<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>#}
+{#										<a href="#" class="post-like"><i class="fa fa-heart"></i><span>28</span></a>#}
+{#									</div>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{#			</div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+
+
+
+
+
+
+{#	<div class="col-sm-6 col-sm-offset-3">#}
+{#	<h1>{{ title }}</h1>#}
+{#	<br>#}
+{#	<div class="row">#}
+{#	{% for obj in object_list %}#}
+{#	<div class="col-sm-12">#}
+{#	<div class="thumbnail">#}
+{#	{% if obj.image %}#}
+{#	<img src="{{ obj.image.url }}" class="img-responsive"/>#}
+{#	{% endif %}#}
+{#	<!-- {# <a href="{% url 'posts:detail' id=obj.id %}">{{ obj.title }}</a><br> #}
+{#	<h3><!-- {{ forloop.counter }}:   --><a href="{{ obj.get_absolute_url }}">{{ obj.title|title }}  <small>{{ obj.timestamp|timesince }} ago</small></a></h3><br>#}
+{#	{{ obj.content|linebreaks|truncatechars:120 }}<br>#}
+{#	<a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a>#}
+{#	</div>#}
+{#	</div>#}
+{##}
+{#	<!-- {% cycle "" "</div><div class='row'>" %} -->#}
+{#	{% endfor %}#}
+{#	</div>#}
+{##}
+{#	<div class="pagination">#}
+{#    <span class="step-links">#}
+{#        {% if object_list.has_previous %}#}
+{#            <a href="?{{page_request_var}}={{ object_list.previous_page_number }}">previous</a>#}
+{#        {% endif %}#}
+{##}
+{#        <span class="current">#}
+{#            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.#}
+{#        </span>#}
+{##}
+{#        {% if object_list.has_next %}#}
+{#            <a href="?{{page_request_var}}={{ object_list.next_page_number }}">next</a>#}
+{#        {% endif %}#}
+{#    </span>#}
+{#	</div>#}
+{##}
+{#	</div>#}
+
+
+
 <!--   <div class="col-sm-6 col-md-4">
-    
+
       <img src="..." alt="...">
       <div class="caption">
         <h3>Thumbnail label</h3>

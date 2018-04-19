@@ -18,6 +18,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from posts import views
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -27,6 +30,7 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/edit/$', views.posts_update, name="update"),
     url(r'^(?P<id>\d+)/delete/$', views.posts_delete, name="delete"),
     url(r'^signup/$', views.signup, name="signup"),
-    url(r'^login/$', auth_views.login, name="login"),
+    url(r'^login/$', views.loguser, name="login"),
     url(r'^logout/$', auth_views.logout, { 'next_page': '/'}, name="logout"),
-]
+    url(r'^verification/$', views.verify, name="verify"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Token
 
 
 class PostModelAdmin(admin.ModelAdmin):
@@ -7,9 +7,12 @@ class PostModelAdmin(admin.ModelAdmin):
     list_display_links = ["title"]
     list_filter = ["updated", "timestamp"]
     search_fields = ["title", "content"]
+
     class Meta:
-        model= Post
+        model = Post
+
 
 admin.site.register(Post, PostModelAdmin)
+admin.site.register(Token)
 
 # username: jajodia , password: testblog

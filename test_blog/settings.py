@@ -127,9 +127,16 @@ STATICFILES_DIRS = [
     #'/var/www/static/',
 ]
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+# STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'list'
+
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'djqueuingapp@gmail.com'
+EMAIL_HOST_PASSWORD = 'QueuingApp#2898'
+EMAIL_PORT = 587

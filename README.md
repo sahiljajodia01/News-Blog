@@ -1,5 +1,5 @@
 # Test-Blog
-A very simple blog made by Django which just lets you create, list, update and delete the posts. It is based on CRUD.
+A News Webapp made using Django which lets you create articles, list, update and delete the articles. It is based on CRUD.
 ____
 
 Here is the **Home** page of the blog. It shows the list of posts users has created.
@@ -7,7 +7,13 @@ Here is the **Home** page of the blog. It shows the list of posts users has crea
 
 ____
 
-You can **Create** new posts by clicking on the 'Create' link on home page. 
+Here is the **login/ signup** screen of the website. We have added a security feature for during signup as well. During signup you will be sent a token on
+your email-id from where you will have to enter the token to verify your email-id.
+
+____
+
+You can **Create** new articles by clicking on the 'Create' link on home page.
+**You can only create articles when you are logged in**
 ![screenshot from 2017-09-26 23 44 08](https://user-images.githubusercontent.com/25135893/31447235-210e6780-aebf-11e7-8720-e17110d3e52a.png)
 
 ____

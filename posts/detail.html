@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
+
+{% block content %}
+<div class="col-sm-6 col-sm-offset-3">
+{% if instance.image %}
+<img src="{{ instance.image.url }}" class="img-responsive">
+{% endif %}
+<h1>{{ title }} <small>{{ instance.timestamp }}</small></h1><br>
+{{ instance.content|linebreaks }}
+
+<a href="{% url 'delete' id=instance.id %}"><button class="btn btn-default">Delete</button></a>
+<a href="{% url 'update' id=instance.id %}"><button class="btn btn-default">Edit</button></a>
+
+</div>
+
+{% endblock content %}

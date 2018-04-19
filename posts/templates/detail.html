@@ -5,16 +5,97 @@
 {% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
 
 {% block content %}
-<div class="col-sm-6 col-sm-offset-3">
-{% if instance.image %}
-<img src="{{ instance.image.url }}" class="img-responsive">
-{% endif %}
-<h1>{{ title }} <small>{{ instance.timestamp }}</small></h1><br>
-{{ instance.content|linebreaks }}
 
-<a href="{% url 'delete' id=instance.id %}"><button class="btn btn-default">Delete</button></a>
-<a href="{% url 'update' id=instance.id %}"><button class="btn btn-default">Edit</button></a>
 
-</div>
+
+
+    <div class="post-fluid">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row post-items">
+                        <div class="post-item-banner">
+                            {% if instance.image %}
+                                <img src="{{ instance.image.url }}" class="img-responsive">
+                            {% else %}
+                                <img src="static/img/img-08.png" class="img-responsive"/>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-2">
+                            <div class="post-item-short">
+								<span class="medium-text" style="font-size: 30px; margin-top: -35px;">{{ instance.timestamp|timesince }}</span>
+								<span class="medium-text" style="font-size: 20px; margin-top: -40px;">ago</span>
+							</div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="post-item post-item-detail">
+                                <div class="post-item-paragraph">
+                                    <h1><a href="{{ obj.get_absolute_url }}">{{title}}</a></h1>
+                                    <p>{{ instance.content|linebreaks }}</p>
+                                </div>
+                            </div>
+
+                    </div>
+                        </div>
+
+
+                </div>
+            </div>
+
+
+    </div>
+
+    <div class="clearfix center-block" style="margin-left: 500px;">
+                            <div class="progress-button">
+                                <p>
+{#                                    <input type="submit"  value="Create Post" />#}
+                                    <a href="{% url 'update' id=instance.id %}"><button class="btn btn-golden btn-outline">Update</button></a>
+                                    <svg class="progress-circle" width="70" height="70">
+                                        <path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/>
+                                    </svg>
+                                    <svg class="checkmark" width="70" height="70">
+                                        <path d="m31.5,46.5l15.3,-23.2"/><path d="m31.5,46.5l-8.5,-7.1"/>
+                                    </svg>
+                                    <svg class="cross" width="70" height="70">
+                                        <path d="m35,35l-9.3,-9.3"/><path d="m35,35l9.3,9.3"/><path d="m35,35l-9.3,9.3"/><path d="m35,35l9.3,-9.3"/>
+                                    </svg>
+                                </p>
+                            </div>
+                        </div>
+
+                            <div class="clearfix" style="margin-left: 500px; margin-top: -100px">
+                            <div class="progress-button">
+                                <p>
+{#                                    <input type="submit" class="btn btn-grey btn-outline" value="Create Post" />#}
+                                    <a href="{% url 'delete' id=instance.id %}"><button class="btn btn-danger btn-outline">Delete</button></a>
+                                    <svg class="progress-circle" width="70" height="70">
+                                        <path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/>
+                                    </svg>
+                                    <svg class="checkmark" width="70" height="70">
+                                        <path d="m31.5,46.5l15.3,-23.2"/><path d="m31.5,46.5l-8.5,-7.1"/>
+                                    </svg>
+                                    <svg class="cross" width="70" height="70">
+                                        <path d="m35,35l-9.3,-9.3"/><path d="m35,35l9.3,9.3"/><path d="m35,35l-9.3,9.3"/><path d="m35,35l9.3,-9.3"/>
+                                    </svg>
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+{#<div class="col-sm-6 col-sm-offset-3">#}
+{#{% if instance.image %}#}
+{#<img src="{{ instance.image.url }}" class="img-responsive">#}
+{#{% endif %}#}
+{#<h1>{{ title }} <small>{{ instance.timestamp }}</small></h1><br>#}
+{#{{ instance.content|linebreaks }}#}
+{##}
+{#<a href="{% url 'delete' id=instance.id %}"><button class="btn btn-default">Delete</button></a>#}
+{#<a href="{% url 'update' id=instance.id %}"><button class="btn btn-default">Edit</button></a>#}
+{##}
+{#</div>#}
 
 {% endblock content %}
