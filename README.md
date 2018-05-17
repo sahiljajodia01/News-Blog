@@ -1,4 +1,4 @@
-# Test-Blog
+# News-Blog
 A News Webapp made using Django which lets you create articles, list, update and delete the articles. It is based on CRUD.
 ____
 
