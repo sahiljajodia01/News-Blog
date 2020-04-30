@@ -33,6 +33,20 @@ class Post(models.Model):
         ordering = ["-timestamp", "-updated"]
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+    post = models.ManyToManyField(Post, related_name='tag')
+
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("tags", kwargs={"tag": self.name})
+
+
 class Token(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='token')
     token = models.CharField(max_length=200, null=True, blank=True)

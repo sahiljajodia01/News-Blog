@@ -1,5 +1,6 @@
 from django import forms
 from .models import Post
+from .models import Tag
 
 
 from django.contrib.auth.forms import UserCreationForm
@@ -7,6 +8,8 @@ from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 
+
+TAG_CHOICES= [(i.name, i.name) for i in Tag.objects.all()]
 
 class CustomUserCreationForm(forms.Form):
     username = forms.CharField(label='Enter Username', min_length=4, max_length=150, widget=forms.TextInput(
@@ -21,6 +24,7 @@ class CustomUserCreationForm(forms.Form):
             'placeholder': 'Enter Email',
         }
     ))
+
     password1 = forms.CharField(label='Enter password', widget=forms.PasswordInput(
         attrs={
             'class': 'contact-input',
@@ -63,6 +67,7 @@ class CustomUserCreationForm(forms.Form):
             self.cleaned_data['email'],
             self.cleaned_data['password1']
         )
+        user.save()
         return user
 
 
@@ -120,6 +125,13 @@ class PostForm(forms.ModelForm):
         }
     ))
 
+    tag = forms.CharField(label='Select tag', widget=forms.Select(choices=TAG_CHOICES,
+        attrs={
+            'class': 'contact-input',
+            'placeholder': 'Select Tag'
+        }
+    ))
+
     image = forms.CharField(widget=forms.FileInput(
         attrs={
             'class': 'form-control-file',
@@ -131,5 +143,6 @@ class PostForm(forms.ModelForm):
         fields = [
             'title',
             'content',
+            'tag',
             'image',
         ]

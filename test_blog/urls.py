@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^$', views.posts_list, name="list"),
     url(r'^create/$', views.posts_create, name="create"),
     url(r'^(?P<id>\d+)/$', views.posts_detail, name="detail"),
+    url(r'^tag/(?P<tag>\D+)/$', views.tag_detail, name="tags"),
     url(r'^(?P<id>\d+)/edit/$', views.posts_update, name="update"),
     url(r'^(?P<id>\d+)/delete/$', views.posts_delete, name="delete"),
     url(r'^signup/$', views.signup, name="signup"),

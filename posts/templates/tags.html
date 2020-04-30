@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="container">
+        <h1>{{ name }}</h1>
+        <hr>
+        <ul class="list-group">
+
+            {% for post in object_list %}
+                <h2><a href="{{ post.get_absolute_url }}"><li class="list-group-item">{{ post.title }}</li></a></h2>
+            {% endfor %}
+          </ul>
+    </div>
+</div>
+
+{% endblock content %}
